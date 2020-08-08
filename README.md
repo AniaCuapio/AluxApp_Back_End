@@ -1,6 +1,6 @@
 # AluxApp_Back_End
 
-###Misión, Visión y Valores
+### Misión, Visión y Valores
 
 # 🧗🏻Misión
 
@@ -17,3 +17,12 @@ Tener presencia en todos los lugares del mundo como una aplicación web que prom
 - Uso de la **tecnología** para generar un **impacto social**.
 - Curiosidad ante las nuevas **tecnologías**.
 - Creemos en la **solidaridad** de nuestra **comunidad** para resolver momentos difíciles.
+
+Creadores:
+-Ruben Somuano García
+-Ariana Naomi López Puertos
+-Ania Cuapio
+
+Mentores:
+-David Moranchel
+-Ivan Tuxtla García
