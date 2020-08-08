@@ -1,0 +1,25 @@
+{
+  "name": "aluxapp_back_end",
+  "version": "1.0.0",
+  "description": "Alux App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AniaCuapio/AluxApp_Back_End.git"
+  },
+  "keywords": [
+    "alux",
+    "pets",
+    "kodemia",
+    "kodeawards"
+  ],
+  "author": "Ruben Somuano, Naomi Lopez Puertos, Ania Cuapio",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AniaCuapio/AluxApp_Back_End/issues"
+  },
+  "homepage": "https://github.com/AniaCuapio/AluxApp_Back_End#readme"
+}
