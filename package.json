@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/AniaCuapio/AluxApp_Back_End/issues"
   },
-  "homepage": "https://github.com/AniaCuapio/AluxApp_Back_End#readme"
+  "homepage": "https://github.com/AniaCuapio/AluxApp_Back_End#readme",
+  "dependencies": {
+    "mongoose": "^5.9.28"
+  }
 }
