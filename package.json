@@ -24,6 +24,9 @@
   },
   "homepage": "https://github.com/AniaCuapio/AluxApp_Back_End#readme",
   "dependencies": {
+    "bcrypt": "^5.0.0",
+    "dotenv": "^8.2.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.28"
   }
 }
