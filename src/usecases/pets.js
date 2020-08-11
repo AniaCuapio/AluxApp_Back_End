@@ -1,4 +1,4 @@
-const Pets = require("../models/entries");
+const Pets = require("../models/pets");
 
 function getAll() {
   return Pets.find();
