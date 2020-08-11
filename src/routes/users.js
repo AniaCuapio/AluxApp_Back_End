@@ -3,9 +3,10 @@ const users = require("../usecases/users");
 const router = express.Router();
 const auth = require("../middleware/auth");
 
-//TODO: poner el middleware a nivel de router
+//Middleware de authenticación a nivel de router
+router.use(auth);
 
-router.get("/", auth, async (request, response) => {
+router.get("/", async (request, response) => {
   try {
     const allUsers = await users.getAll();
     response.json({
@@ -23,7 +24,7 @@ router.get("/", auth, async (request, response) => {
   }
 });
 
-router.get("/:id", auth, async (request, response) => {
+router.get("/:id", async (request, response) => {
   try {
     const id = request.params.id;
     const userById = await users.getById(id);
@@ -42,26 +43,27 @@ router.get("/:id", auth, async (request, response) => {
   }
 });
 
-router.post("/", auth, async (request, response) => {
-  try {
-    const newUserData = request.body;
-    const newUser = await users.create(newUserData);
-    response.json({
-      success: true,
-      data: {
-        newUser,
-      },
-    });
-  } catch (error) {
-    response.status(400);
-    response.json({
-      success: false,
-      error: error.message,
-    });
-  }
-});
+//Este regresa el password en plano, creo que no conviene tenerlo acá
+// router.post("/", async (request, response) => {
+//   try {
+//     const newUserData = request.body;
+//     const newUser = await users.create(newUserData);
+//     response.json({
+//       success: true,
+//       data: {
+//         newUser,
+//       },
+//     });
+//   } catch (error) {
+//     response.status(400);
+//     response.json({
+//       success: false,
+//       error: error.message,
+//     });
+//   }
+// });
 
-router.delete("/:id", auth, async (request, response) => {
+router.delete("/:id", async (request, response) => {
   try {
     const id = request.params.id;
     const remove = await users.remove(id);
@@ -78,7 +80,7 @@ router.delete("/:id", auth, async (request, response) => {
   }
 });
 
-router.patch("/:id", auth, async (request, response) => {
+router.patch("/:id", async (request, response) => {
   try {
     const id = request.params.id;
     const newUserData = request.body;

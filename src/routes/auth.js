@@ -21,7 +21,7 @@ router.post("/sign-up", async (request, response) => {
   }
 });
 
-router.post("/sign-in", async (request, response) => {
+router.post("/log-in", async (request, response) => {
   try {
     const { email, password } = request.body;
     const token = await user.login(email, password);
