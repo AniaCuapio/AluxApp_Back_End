@@ -2,9 +2,8 @@
 
 const mongoose = require("mongoose");
 
-require("dotenv").config();
-
-const MONGO_URL = process.env.MONGO_URL;
+const { DB_USER, DB_PASSWORD, DB_NAME, DB_HOST } = process.env,
+  CONN_STRING = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`;
 
 module.exports = () => {
   //retorna una promesa acciones asincronas
