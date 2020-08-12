@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 const usersSchema = new mongoose.Schema({
   id: {
     required: false,
@@ -42,6 +42,9 @@ const usersSchema = new mongoose.Schema({
   phoneNumber: {
     type: Number,
   },
-});
+  //! Restablecer password
+  tokenResetPassword: String,
+  expiraResetPassword: Date,
+})
 
-module.exports = mongoose.model("users", usersSchema);
+module.exports = mongoose.model('users', usersSchema)
