@@ -1,9 +1,5 @@
 const mongoose = require("mongoose");
 const entriesSchema = new mongoose.Schema({
-  id: {
-    type: String,
-    required: true,
-  },
   title: {
     type: String,
     required: true,
@@ -19,7 +15,7 @@ const entriesSchema = new mongoose.Schema({
   },
   imageurl: {
     type: String,
-    required: true,
+    required: false,
   },
   tags: {
     type: Array,

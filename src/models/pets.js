@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const petsSchema = new mongoose.Schema({
   id: {
-    required: true,
     type: String,
   },
   name: {
@@ -10,7 +9,7 @@ const petsSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    required: true,
+    //    required: true,
   },
   updatedAt: {
     type: Date,
@@ -57,7 +56,6 @@ const petsSchema = new mongoose.Schema({
   },
   lostAddress: {
     type: Object,
-    required: true,
   },
   qrCode: {
     type: Object, //token?
@@ -86,7 +84,6 @@ const petsSchema = new mongoose.Schema({
   },
   entries: {
     type: Array,
-    required: true,
   },
   poster: {
     type: String,
