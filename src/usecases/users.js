@@ -49,12 +49,9 @@ async function login(email, password) {
   return jwt.sign({ id: userByEmail._id })
 }
 
-//! Restablecer password
+//! Reset password
 
 async function generateTokenReset(email) {
-  const { tokenResetPassword, expiraResetPassword } = Users
-  console.log(tokenResetPassword)
-
   const userByEmail = await Users.findOne({ email })
   if (!userByEmail) {
     throw new Error('Reset-password error- Email')
@@ -69,22 +66,37 @@ async function generateTokenReset(email) {
   return userByEmail.tokenResetPassword
 }
 
-// async function sendEmailPassword(email, resetUrl) {
-//   await sendEmail.sendEmail({
-//     email,
-//     subject: 'Password Reset',
-//     resetUrl,
-//     file,
-//   })
-// }
+//ToDo: correo
 
-async function resetPassword(tokenResetPassword) {
+async function checkLinkToken(tokenResetPassword) {
   const userByToken = await Users.findOne({
     tokenResetPassword,
     expiraResetPassword: {
       $gt: Date.now(),
     },
   })
+  if (!userByToken) {
+    throw new Error('Invalid token')
+  }
+  console.log(userByToken)
+}
+
+async function saveNewPassword(tokenResetPassword, userData) {
+  const userByToken = await Users.findOne({
+    tokenResetPassword,
+    expiraResetPassword: {
+      $gt: Date.now(),
+    },
+  })
+  if (!userByToken) {
+    throw new Error('Invalid token')
+  }
+  const { password } = userData
+  const encriptedPassword = await bcrypt.hash(password)
+  userByToken.password = encriptedPassword
+  userByToken.tokenResetPassword = undefined
+  userByToken.expiraResetPassword = undefined
+  await userByToken.save()
 }
 
 module.exports = {
@@ -96,5 +108,6 @@ module.exports = {
   signUp,
   login,
   generateTokenReset,
-  resetPassword,
+  checkLinkToken,
+  saveNewPassword,
 }

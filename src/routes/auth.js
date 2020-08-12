@@ -24,7 +24,6 @@ router.post('/sign-up', async (request, response) => {
 
 router.post('/log-in', async (request, response) => {
   try {
-    const { email, password } = request.body
     const token = await user.login(email, password)
     response.json({
       success: true,
@@ -41,7 +40,8 @@ router.post('/log-in', async (request, response) => {
   }
 })
 
-//! Resetear password
+//! endpoints to Reset password
+//* Reset password (emails)
 router.get('/reset-password', async (request, response) => {
   try {
     response.json({
@@ -78,10 +78,31 @@ router.post('/reset-password', async (request, response) => {
   }
 })
 
+//* Reset password and save DB
 router.get('/reset-password/:token', async (request, response) => {
   try {
     const tokenResetPassword = request.params.token
-    const exist = await user.resetPassword(tokenResetPassword)
+    await user.checkLinkToken(tokenResetPassword)
+    response.json({
+      success: true,
+      message: 'Correct Token ',
+    })
+  } catch (error) {
+    response.json({
+      success: false,
+      error: error.message,
+    })
+  }
+})
+router.post('/reset-password/:token', async (request, response) => {
+  try {
+    const tokenResetPassword = request.params.token
+
+    await user.saveNewPassword(tokenResetPassword, request.body)
+    response.json({
+      success: true,
+      message: 'save new password ',
+    })
   } catch (error) {
     response.json({
       success: false,
