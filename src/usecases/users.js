@@ -93,12 +93,14 @@ async function saveNewPassword(tokenResetPassword, userData) {
   }
   const { password } = userData
   const encriptedPassword = await bcrypt.hash(password)
+
   userByToken.password = encriptedPassword
   userByToken.tokenResetPassword = undefined
   userByToken.expiraResetPassword = undefined
-  await userByToken.save()
-}
 
+  return await userByToken.save()
+}
+//$2b$10$Y1AWC0JyBGXJmPQSgr.V1O5dHij2YmNf8T7qUSJd6izSMf44kwKTi
 module.exports = {
   getAll,
   getById,

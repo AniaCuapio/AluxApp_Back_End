@@ -24,6 +24,7 @@ router.post('/sign-up', async (request, response) => {
 
 router.post('/log-in', async (request, response) => {
   try {
+    const { email, password } = request.body
     const token = await user.login(email, password)
     response.json({
       success: true,
@@ -58,6 +59,7 @@ router.get('/reset-password', async (request, response) => {
 
 router.post('/reset-password', async (request, response) => {
   try {
+    console.log(request.body)
     const { email } = request.body
     const tokenResetPassword = await user.generateTokenReset(email)
     const resetUrl = `http://${request.headers.host}/reset-password/${tokenResetPassword}`
@@ -98,9 +100,10 @@ router.post('/reset-password/:token', async (request, response) => {
   try {
     const tokenResetPassword = request.params.token
 
-    await user.saveNewPassword(tokenResetPassword, request.body)
+    const newData = await user.saveNewPassword(tokenResetPassword, request.body)
     response.json({
       success: true,
+      data: newData,
       message: 'save new password ',
     })
   } catch (error) {
