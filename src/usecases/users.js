@@ -81,7 +81,7 @@ async function checkLinkToken(tokenResetPassword) {
   console.log(userByToken)
 }
 
-async function saveNewPassword(tokenResetPassword, userData) {
+async function saveNewPassword(tokenResetPassword, newPassword) {
   const userByToken = await Users.findOne({
     tokenResetPassword,
     expiraResetPassword: {
@@ -91,8 +91,8 @@ async function saveNewPassword(tokenResetPassword, userData) {
   if (!userByToken) {
     throw new Error('Invalid token')
   }
-  const { password } = userData
-  const encriptedPassword = await bcrypt.hash(password)
+
+  const encriptedPassword = await bcrypt.hash(newPassword)
 
   userByToken.password = encriptedPassword
   userByToken.tokenResetPassword = undefined
@@ -100,7 +100,6 @@ async function saveNewPassword(tokenResetPassword, userData) {
 
   return await userByToken.save()
 }
-//$2b$10$Y1AWC0JyBGXJmPQSgr.V1O5dHij2YmNf8T7qUSJd6izSMf44kwKTi
 module.exports = {
   getAll,
   getById,

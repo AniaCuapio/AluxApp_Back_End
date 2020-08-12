@@ -99,8 +99,8 @@ router.get('/reset-password/:token', async (request, response) => {
 router.post('/reset-password/:token', async (request, response) => {
   try {
     const tokenResetPassword = request.params.token
-
-    const newData = await user.saveNewPassword(tokenResetPassword, request.body)
+    const { password } = request.body
+    const newData = await user.saveNewPassword(tokenResetPassword, password)
     response.json({
       success: true,
       data: newData,
