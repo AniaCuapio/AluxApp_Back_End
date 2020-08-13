@@ -2,7 +2,8 @@ const Users = require('../models/users')
 const bcrypt = require('../lib/bcrypt.js')
 const jwt = require('../lib/jwt')
 const crypto = require('crypto')
-const sendEmail = require('../handlers/email')
+const sendMail = require('@sendgrid/mail')
+const sendEmail = require('../lib/email')
 
 function getAll() {
   return Users.find()
@@ -49,8 +50,6 @@ async function login(email, password) {
   return jwt.sign({ id: userByEmail._id })
 }
 
-//! Reset password
-
 async function generateTokenReset(email) {
   const userByEmail = await Users.findOne({ email })
   if (!userByEmail) {
@@ -65,8 +64,6 @@ async function generateTokenReset(email) {
 
   return userByEmail.tokenResetPassword
 }
-
-//ToDo: correo
 
 async function checkLinkToken(tokenResetPassword) {
   const userByToken = await Users.findOne({
@@ -100,6 +97,9 @@ async function saveNewPassword(tokenResetPassword, newPassword) {
 
   return await userByToken.save()
 }
+
+//ToDo: send reset password email
+
 module.exports = {
   getAll,
   getById,

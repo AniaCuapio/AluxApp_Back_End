@@ -1,9 +1,10 @@
 const emailConfig = require('../lib/email')
 const nodemailer = require('nodemailer')
-const hbs = require('nodemailer-express-handlebars')
 const util = require('util')
+const { model } = require('../models/users')
 
-const { host, port, user, pass } = emailConfig
+const { host, port, user, pass } = nodemailer
+
 let transport = nodemailer.createTransport({
   host,
   port,
@@ -13,15 +14,12 @@ let transport = nodemailer.createTransport({
   },
 })
 
-async function sendEmail({ options: { email, subject, resetUrl, file } }) {
+async function sendEmail(email, resetUrl) {
   const emailOptions = {
-    from: 'Alux <noreply@alux.com',
+    from: 'Alux <noreply@alux.app',
     to: email,
-    template: file,
-    subject,
-    context: {
-      resetUrl,
-    },
+    subject: 'Restablecer contraseña',
+    text: resetUrl,
   }
   const sendMail = util.promisify(transport.sendMail, transport)
   return sendMail.call(transport, emailOptions)
