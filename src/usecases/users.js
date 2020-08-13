@@ -3,7 +3,6 @@ const bcrypt = require('../lib/bcrypt.js')
 const jwt = require('../lib/jwt')
 const crypto = require('crypto')
 const sendMail = require('@sendgrid/mail')
-const sendEmail = require('../lib/email')
 
 function getAll() {
   return Users.find()
