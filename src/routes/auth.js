@@ -1,8 +1,8 @@
 const express = require('express')
-
 const router = express.Router()
 const user = require('../usecases/users')
 const { request } = require('express')
+const mailer = require('../lib/email')
 
 router.post('/sign-up', async (request, response) => {
   try {
@@ -59,12 +59,13 @@ router.get('/reset-password', async (request, response) => {
 
 router.post('/reset-password', async (request, response) => {
   try {
-    console.log(request.body)
     const { email } = request.body
     const tokenResetPassword = await user.generateTokenReset(email)
     const resetUrl = `http://${request.headers.host}/reset-password/${tokenResetPassword}`
     console.log(resetUrl)
     //ToDo : Enviar por correo
+    mailer.sendEmail(email, resetUrl)
+
     response.json({
       success: true,
       data: {
