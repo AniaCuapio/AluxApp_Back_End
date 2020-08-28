@@ -71,16 +71,14 @@ const petsSchema = new mongoose.Schema({
     required: false,
   },
   character: {
-    type: String,
+    type: Array,
     required: false,
   },
-  isMissing: {
-    type: Boolean,
+  status: {
+    enum: ["normal", "isMissing", "isAvailableForAdoption"],
+    type: String,
     required: true,
-  },
-  isAvailableForAdoption: {
-    type: Boolean,
-    required: true,
+    default: "normal"
   },
   entries: {
     type: Array,

@@ -1,0 +1,5 @@
+applications:
+- name: api-alux
+  random-route: true
+  memory: 128M
+  force_https: true
