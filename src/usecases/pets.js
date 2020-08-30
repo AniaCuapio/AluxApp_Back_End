@@ -1,29 +1,33 @@
-const Pets = require("../models/pets");
+const Pets = require('../models/pets')
 
 function getAll() {
-  return Pets.find();
+  return Pets.find()
 }
 
-function getByID(petId) {
-  return Pets.findById(petId);
+async function getById(petId) {
+  const petById = await Pets.findOne({ _id: petId }).populate('user')
+  if (!petById) {
+    throw new Error('Dato incorrecto')
+  }
+  return petById
 }
 
 function create(petData) {
-  return Pets.create(petData);
+  return Pets.create(petData)
 }
 
 function remove(petId) {
-  return Pets.findByIdAndDelete(petId);
+  return Pets.findByIdAndDelete(petId)
 }
 
 function update(petId, newPetData) {
-  return Pets.findByIdAndUpdate(petId, newPetData);
+  return Pets.findByIdAndUpdate(petId, newPetData)
 }
 
 module.exports = {
   getAll,
-  getByID,
+  getById,
   create,
   remove,
   update,
-};
+}

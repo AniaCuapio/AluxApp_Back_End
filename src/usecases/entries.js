@@ -1,23 +1,23 @@
-const Entries = require("../models/entries");
+const Entries = require('../models/entries')
 
 function getAll() {
-  return Entries.find();
+  return Entries.find()
 }
 
 function getById(entryId) {
-  return Entries.findById(entryId);
+  return Entries.findById(entryId)
 }
 
 function create(entryData) {
-  return Entries.create(entryData);
+  return Entries.create(entryData)
 }
 
 function remove(entryId) {
-  return Entries.findByIdAndDelete(entryId);
+  return Entries.findByIdAndDelete(entryId)
 }
 
 function update(entryId, newEntryData) {
-  return Entries.findByIdAndUpdate(entryId, newEntryData);
+  return Entries.findByIdAndUpdate(entryId, newEntryData)
 }
 
 module.exports = {
@@ -26,4 +26,4 @@ module.exports = {
   create,
   remove,
   update,
-};
+}

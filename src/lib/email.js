@@ -1,5 +1,15 @@
 const nodemailer = require('nodemailer')
-const { MAIL_USER, MAIL_PASS, MAIL_HOST, MAIL_PORT, JWT_SECRET } = process.env
+const {
+  MAIL_USER,
+  MAIL_PASS,
+  MAIL_HOST,
+  MAIL_PORT,
+  JWT_SECRET,
+  SENDGRID_API_KEY,
+} = process.env
+
+const sgMail = require('@sendgrid/mail')
+sgMail.setApiKey(SENDGRID_API_KEY)
 
 let transporter = nodemailer.createTransport({
   host: MAIL_HOST,
@@ -22,8 +32,8 @@ transporter
 
 async function sendEmail(email, resetUrl) {
   console.log('enviar correo')
-  await transporter.sendMail({
-    from: '"Alux 🐰" <noreplay@alux.com>', // sender address
+  await sgMail.send({
+    from: '"Alux 🐰" <alux@gmail.com>', // sender address
     to: email, // list of receivers
     subject: 'Restablecer contraseña ✔', // Subject line
     text: `Reset password  ${resetUrl}`, // plain text body
@@ -34,4 +44,30 @@ async function sendEmail(email, resetUrl) {
   })
 }
 
-module.exports = { sendEmail }
+async function sendQRReadEmail(email, coords) {
+  console.log('enviar correo')
+  try {
+    await sgMail.send({
+      from: '"Alux 🐰" <alux@gmail.com>', // sender address
+      to: email, // list of receivers
+      subject: 'Información sobre tu mascota 🦄', // Subject line
+      html: `<h1>Hola ${email}</h1> 
+        <p>Escanearon el QR de tu mascota en: ${coords.latitude} ${coords.longitude}</p>`, // html body
+    })
+  } catch (error) {
+    // Log friendly error
+    console.error(error)
+
+    if (error.response) {
+      // Extract error msg
+      const { message, code, response } = error
+
+      // Extract response msg
+      const { headers, body } = response
+
+      console.error(body)
+    }
+  }
+}
+
+module.exports = { sendEmail, sendQRReadEmail }

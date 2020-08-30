@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 const petsSchema = new mongoose.Schema({
   id: {
     type: String,
@@ -18,7 +18,8 @@ const petsSchema = new mongoose.Schema({
     type: Array,
   },
   owner: {
-    type: String,
+    type: mongoose.Types.ObjectId,
+    ref: 'users',
     required: true,
   },
   species: {
@@ -40,7 +41,7 @@ const petsSchema = new mongoose.Schema({
   sex: {
     type: String,
     required: true,
-    enum: ["female", "male", "unknown"],
+    enum: ['female', 'male', 'unknown'],
   },
   birthDate: {
     type: Date,
@@ -87,6 +88,6 @@ const petsSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-});
+})
 
-module.exports = mongoose.model("pets", petsSchema);
+module.exports = mongoose.model('pets', petsSchema)
