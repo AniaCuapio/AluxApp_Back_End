@@ -1,10 +1,15 @@
 const nodemailer = require('nodemailer')
-const { MAIL_USER, MAIL_PASS, MAIL_HOST, MAIL_PORT, JWT_SECRET } = process.env
-
 const sgMail = require('@sendgrid/mail')
-sgMail.setApiKey(
-  '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'
-)
+const {
+  MAIL_USER,
+  MAIL_PASS,
+  MAIL_HOST,
+  MAIL_PORT,
+  JWT_SECRET,
+  SEND_KEY,
+} = process.env
+
+sgMail.setApiKey(SEND_KEY)
 
 let transporter = nodemailer.createTransport({
   host: MAIL_HOST,

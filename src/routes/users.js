@@ -3,7 +3,7 @@ const users = require('../usecases/users')
 const router = express.Router()
 const auth = require('../middleware/auth')
 
-//Middleware de authenticación a nivel de router
+//Middleware de authentication a nivel de router
 router.use(auth)
 
 router.get('/', async (request, response) => {
@@ -42,26 +42,6 @@ router.get('/:id', async (request, response) => {
     })
   }
 })
-
-//Este regresa el password en plano, creo que no conviene tenerlo acá
-// router.post("/", async (request, response) => {
-//   try {
-//     const newUserData = request.body;
-//     const newUser = await users.create(newUserData);
-//     response.json({
-//       success: true,
-//       data: {
-//         newUser,
-//       },
-//     });
-//   } catch (error) {
-//     response.status(400);
-//     response.json({
-//       success: false,
-//       error: error.message,
-//     });
-//   }
-// });
 
 router.delete('/:id', async (request, response) => {
   try {

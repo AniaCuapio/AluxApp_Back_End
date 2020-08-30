@@ -106,7 +106,6 @@ router.post('/readQR', async (request, response) => {
   try {
     const token = request.query.token
     const coords = request.body.coords
-
     const { id } = await verify(token)
     const petById = await pets.getById(id)
     const owner = await users.getById(petById.owner)
