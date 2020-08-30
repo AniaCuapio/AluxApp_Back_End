@@ -2,7 +2,7 @@ const Users = require('../models/users')
 const bcrypt = require('../lib/bcrypt.js')
 const jwt = require('../lib/jwt')
 const crypto = require('crypto')
-const sendMail = require('@sendgrid/mail')
+// const sendMail = require('@sendgrid/mail')
 
 function getAll() {
   return Users.find()

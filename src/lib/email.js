@@ -1,15 +1,15 @@
 const nodemailer = require('nodemailer')
-const sgMail = require('@sendgrid/mail')
 const {
   MAIL_USER,
   MAIL_PASS,
   MAIL_HOST,
   MAIL_PORT,
   JWT_SECRET,
-  SEND_KEY,
+  SENDGRID_API_KEY,
 } = process.env
 
-sgMail.setApiKey(SEND_KEY)
+const sgMail = require('@sendgrid/mail')
+sgMail.setApiKey(SENDGRID_API_KEY)
 
 let transporter = nodemailer.createTransport({
   host: MAIL_HOST,
@@ -33,7 +33,7 @@ transporter
 async function sendEmail(email, resetUrl) {
   console.log('enviar correo')
   await sgMail.send({
-    from: '"Alux 🐰" <alux.app@gmail.com>', // sender address
+    from: '"Alux 🐰" <alux@gmail.com>', // sender address
     to: email, // list of receivers
     subject: 'Restablecer contraseña ✔', // Subject line
     text: `Reset password  ${resetUrl}`, // plain text body
@@ -48,7 +48,7 @@ async function sendQRReadEmail(email, coords) {
   console.log('enviar correo')
   try {
     await sgMail.send({
-      from: '"Alux 🐰" <alux.app@gmail.com>', // sender address
+      from: '"Alux 🐰" <alux@gmail.com>', // sender address
       to: email, // list of receivers
       subject: 'Información sobre tu mascota 🦄', // Subject line
       html: `<h1>Hola ${email}</h1> 

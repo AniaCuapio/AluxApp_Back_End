@@ -4,8 +4,12 @@ function getAll() {
   return Pets.find()
 }
 
-function getById(petId) {
-  return Pets.findById(petId)
+async function getById(petId) {
+  const petById = await Pets.findOne({ _id: petId }).populate('user')
+  if (!petById) {
+    throw new Error('Dato incorrecto')
+  }
+  return petById
 }
 
 function create(petData) {
