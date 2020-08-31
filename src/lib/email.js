@@ -40,7 +40,7 @@ async function sendEmail(email, resetUrl) {
     html: `<h1>Hola ${email}</h1> 
       <p>Para restablcer tu contraseña sigue el siguiente link: <br> 
       <a href="${resetUrl}">Cambiar mi contraseña</a> <br>
-      <small> Validez 1hr, si no solicitaste cambiarla simplemente ignora este correo, tu contraseña seguira intacta </small></p>`, // html body
+      <small> Validez 1hr, si no solicitaste cambiarla simplemente ignora este correo, tu contraseña seguira intacta </small>   <small>${resetUrl}</small></p>`, // html body
   })
 }
 
