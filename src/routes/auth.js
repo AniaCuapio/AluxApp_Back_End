@@ -6,12 +6,10 @@ const mailer = require('../lib/email')
 
 router.post('/sign-up', async (request, response) => {
   try {
-    const signUpUser = await user.signUp(request.body)
+    const data = await user.signUp(request.body)
     response.json({
       success: true,
-      data: {
-        user: signUpUser,
-      },
+      data,
     })
   } catch (error) {
     response.status(400)

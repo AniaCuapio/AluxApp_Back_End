@@ -8,12 +8,10 @@ const email = require('../lib/email')
 
 router.get('/', async (request, response) => {
   try {
-    const allPets = await pets.getAll()
+    const data = await pets.getAll()
     response.json({
       success: true,
-      data: {
-        pets: allPets,
-      },
+      data,
     })
   } catch (error) {
     response.status(400)
@@ -85,12 +83,10 @@ router.patch('/:id', auth, async (request, response) => {
   try {
     const id = request.params.id
     const newPetData = request.body
-    const update = await pets.update(id, newPetData)
+    const data = await pets.update(id, newPetData)
     response.json({
       success: true,
-      data: {
-        update,
-      },
+      data,
       message: 'Pet successfully updated',
     })
   } catch (error) {

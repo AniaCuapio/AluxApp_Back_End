@@ -5,7 +5,9 @@ function getAll() {
 }
 
 async function getById(petId) {
-  const petById = await Pets.findOne({ _id: petId }).populate('user')
+  console.log(petId)
+  const petById = await Pets.findOne({ _id: petId }).populate('owner')
+
   if (!petById) {
     throw new Error('Dato incorrecto')
   }
