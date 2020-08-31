@@ -61,7 +61,7 @@ router.post('/reset-password', async (request, response) => {
   try {
     const { email } = request.body
     const tokenResetPassword = await user.generateTokenReset(email)
-    const resetUrl = `http://${request.headers.host}/reset-password/${tokenResetPassword}`
+    const resetUrl = `http://localhost:3000/reset-password/${tokenResetPassword}`
     console.log(resetUrl)
     //ToDo : Enviar por correo
     mailer.sendEmail(email, resetUrl)
