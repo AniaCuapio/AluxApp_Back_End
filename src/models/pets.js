@@ -55,8 +55,13 @@ const petsSchema = new mongoose.Schema({
     type: Object,
     required: false,
   },
+  address: {
+    type: Object,
+    required: false,
+  },
   lostAddress: {
     type: Object,
+    required: false,
   },
   qrCode: {
     type: Object, //token?
