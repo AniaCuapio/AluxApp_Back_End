@@ -37,9 +37,9 @@ async function sendEmail(email, resetUrl) {
     to: email, // list of receivers
     subject: 'Restablecer contraseña ✔', // Subject line
     text: `Reset password  ${resetUrl}`, // plain text body
-    html: `<h1>Hola ${email}</h1> 
+    html: `<h1 style="color: #3587a0; font-size:20px; text-decoration:none ">Hola ${email}</h1> 
       <p>Para restablcer tu contraseña sigue el siguiente link: <br> 
-      <a href="${resetUrl}">Cambiar mi contraseña</a> <br>
+      <a href="${resetUrl}" style="color: #3587a0; font-size:20px; ">Cambiar mi contraseña</a> <br>
       <small> Validez 1hr, si no solicitaste cambiarla simplemente ignora este correo, tu contraseña seguira intacta </small>   <small>${resetUrl}</small></p>`, // html body
   })
 }
@@ -51,9 +51,9 @@ async function sendQRReadEmail(email, coords) {
       from: '"Alux 🐰" <alux@gmail.com>', // sender address
       to: email, // list of receivers
       subject: 'Información sobre tu mascota 🦄', // Subject line
-      html: `<h1>Hola ${email}</h1> 
-        <p>Escanearon el QR de tu mascota en: ${coords.latitude} ${coords.longitude}</p> 
-        <button><a href= "https://maps.google.com/?q=${coords.latitude},${coords.longitude}">Ir a google maps</a></button>`, // html body
+      html: `<h1 style="color: #3587a0; font-size:26px; text-decoration:none ">Hola ${email}</h1> 
+        <p style=" font-size:16px;">Escanearon el QR de tu mascota en: ${coords.latitude} ${coords.longitude}</p> 
+        <button style="background-color: #3587a0; color: #fcfafa; border:none; border-radius:5px ; padding: 10px 15px ; "><a href= "https://maps.google.com/?q=${coords.latitude},${coords.longitude}" style=" color: #fcfafa;  text-decoration:none " >Ir a google maps</a></button>`, // html body
     })
   } catch (error) {
     // Log friendly error
