@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 const entriesSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -10,7 +10,8 @@ const entriesSchema = new mongoose.Schema({
     required: true,
   },
   user: {
-    type: String,
+    type: mongoose.Types.ObjectId,
+    ref: 'pets',
     required: true,
   },
   imageurl: {
@@ -30,6 +31,6 @@ const entriesSchema = new mongoose.Schema({
   likes: {
     type: Number,
   },
-});
+})
 
-module.exports = mongoose.model("entries", entriesSchema);
+module.exports = mongoose.model('entries', entriesSchema)
