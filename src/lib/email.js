@@ -52,7 +52,8 @@ async function sendQRReadEmail(email, coords) {
       to: email, // list of receivers
       subject: 'Información sobre tu mascota 🦄', // Subject line
       html: `<h1>Hola ${email}</h1> 
-        <p>Escanearon el QR de tu mascota en: ${coords.latitude} ${coords.longitude}</p>`, // html body
+        <p>Escanearon el QR de tu mascota en: ${coords.latitude} ${coords.longitude}</p> 
+        <button><a href= "https://maps.google.com/?q=${coords.latitude},${coords.longitude}">Ir a google maps</a></button>`, // html body
     })
   } catch (error) {
     // Log friendly error
