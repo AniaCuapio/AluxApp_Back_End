@@ -18,7 +18,7 @@ const entriesSchema = new mongoose.Schema({
     required: false,
   },
   tags: {
-    type: Array,
+    type: String,
     require: false,
   },
   createdAt: {
