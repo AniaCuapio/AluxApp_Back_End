@@ -14,8 +14,9 @@ const petsSchema = new mongoose.Schema({
   updatedAt: {
     type: Date,
   },
-  pictures: {
-    type: Array,
+  imageurl: {
+    type: String,
+    required: false,
   },
   owner: {
     type: mongoose.Types.ObjectId,
